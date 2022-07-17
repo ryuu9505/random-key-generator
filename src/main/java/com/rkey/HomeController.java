@@ -28,7 +28,7 @@ public class HomeController {
     }*/
 
     @PostMapping("/")
-    public String homeRedirect() {
+    public String SetClipboard() {
 
         System.setProperty("java.awt.headless", "false");
         TextTransfer textTransfer = new TextTransfer();
