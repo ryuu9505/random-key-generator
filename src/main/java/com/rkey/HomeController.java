@@ -42,6 +42,7 @@ public class HomeController {
             String str = RandomStringUtils.randomAlphanumeric(12);
             textTransfer.setClipboardContents(str);
         } catch (Exception e) {
+            log.info("Exception={}", e);
             throw e;
         }
         return "redirect:/";
