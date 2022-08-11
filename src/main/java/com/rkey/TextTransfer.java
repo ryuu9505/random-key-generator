@@ -1,9 +1,14 @@
 package com.rkey;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.io.IOException;
 
+@Slf4j
+@Component
 public final class TextTransfer implements ClipboardOwner {
 
     /** Simple test harness. */
@@ -11,11 +16,11 @@ public final class TextTransfer implements ClipboardOwner {
         TextTransfer textTransfer = new TextTransfer();
 
         //display what is currently on the clipboard
-        log("Clipboard contains:" + textTransfer.getClipboardContents());
+        log.info("Clipboard contains={}", textTransfer.getClipboardContents());
 
         //change the contents and then re-display
         textTransfer.setClipboardContents("blah, blah, blah");
-        log("Clipboard contains:" + textTransfer.getClipboardContents());
+        log.info("Clipboard contains={}", textTransfer.getClipboardContents());
     }
 
     /**
@@ -33,6 +38,7 @@ public final class TextTransfer implements ClipboardOwner {
         StringSelection stringSelection = new StringSelection(string);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, this);
+        log.info("Clipboard contains={}", this.getClipboardContents());
     }
 
     /**

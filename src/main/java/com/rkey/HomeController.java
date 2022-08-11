@@ -1,5 +1,6 @@
 package com.rkey;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
+
+    private final TextTransfer textTransfer;
 
     @GetMapping("/")
     public String home(@ModelAttribute Data data, Model model) {
@@ -35,7 +39,7 @@ public class HomeController {
 
         log.info("PostMapping to /"); // TODO
         System.setProperty("java.awt.headless", "false");
-        TextTransfer textTransfer = new TextTransfer();
+        // TODO TextTransfer textTransfer = new TextTransfer();
         String str = RandomStringUtils.randomAlphanumeric(12);
 
         textTransfer.setClipboardContents(str);
