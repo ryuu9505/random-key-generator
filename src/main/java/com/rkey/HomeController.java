@@ -13,7 +13,7 @@ public class HomeController {
 
         model.addAttribute("data", data);
 
-        return "/home";
+        return "home";
     }
 
 /*    @GetMapping("/{length}")
