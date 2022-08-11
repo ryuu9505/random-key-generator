@@ -19,7 +19,6 @@ public class HomeController {
 
         log.info("GetMapping to /"); // TODO
         model.addAttribute("data", data);
-
         return "home";
     }
 
@@ -35,14 +34,16 @@ public class HomeController {
     }*/
 
     @PostMapping("/")
-    public String SetClipboard() {
+    public String SetClipboard() throws Exception{
 
         log.info("PostMapping to /"); // TODO
-        System.setProperty("java.awt.headless", "false");
-        // TODO TextTransfer textTransfer = new TextTransfer();
-        String str = RandomStringUtils.randomAlphanumeric(12);
-
-        textTransfer.setClipboardContents(str);
+        try {
+            System.setProperty("java.awt.headless", "false");
+            String str = RandomStringUtils.randomAlphanumeric(12);
+            textTransfer.setClipboardContents(str);
+        } catch (Exception e) {
+            throw e;
+        }
         return "redirect:/";
     }
 }

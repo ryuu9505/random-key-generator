@@ -11,17 +11,19 @@ import java.io.IOException;
 @Component
 public final class TextTransfer implements ClipboardOwner {
 
-    /** Simple test harness. */
+/*
+Simple test harness.
     public static void main(String...  args){
-        TextTransfer textTransfer = new TextTransfer();
+        // TextTransfer textTransfer = new TextTransfer();
 
         //display what is currently on the clipboard
-        log.info("Clipboard contains={}", textTransfer.getClipboardContents());
+        // log.info("Clipboard contains={}", textTransfer.getClipboardContents());
 
         //change the contents and then re-display
-        textTransfer.setClipboardContents("blah, blah, blah");
-        log.info("Clipboard contains={}", textTransfer.getClipboardContents());
+        //textTransfer.setClipboardContents("blah, blah, blah");
+        //log.info("Clipboard contains={}", textTransfer.getClipboardContents());
     }
+*/
 
     /**
      * Empty implementation of the ClipboardOwner interface.
@@ -34,10 +36,15 @@ public final class TextTransfer implements ClipboardOwner {
      * Place a String on the clipboard, and make this class the
      * owner of the Clipboard's contents.
      */
-    public void setClipboardContents(String string){
-        StringSelection stringSelection = new StringSelection(string);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, this);
+    public void setClipboardContents(String string) throws Exception {
+        log.info("setClipboardContents()");
+        try {
+            StringSelection stringSelection = new StringSelection(string);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, this);
+        } catch(Exception e) {
+            throw e;
+        }
         log.info("Clipboard contains={}", this.getClipboardContents());
     }
 
