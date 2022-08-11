@@ -43,6 +43,7 @@ Simple test harness.
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, this);
         } catch(Exception e) {
+            log.info("Exception={}", e);
             throw e;
         }
         log.info("Clipboard contains={}", this.getClipboardContents());
